@@ -1,21 +1,28 @@
 "use strict";
-exports.__esModule = true;
-var typescript_is_1 = require("typescript-is");
 function summ(a) {
     var sum = 0;
     var x = Object.keys(a).map(function (k) {
         var elem = a[k];
-        console.log(elem);
+        console.log(elem.cvalue);
         if (typeof elem.cvalue === "number") {
-            sum += 1;
+            sum += elem.cvalue;
         }
         ;
         if (typeof elem.cvalue === 'string') {
-            sum += 1;
+            if (isNaN(+elem.cvalue)) {
+                sum += 2021;
+            }
+            else
+                (sum += +elem.cvalue);
         }
         ; // || '2021'
-        if (typescript_is_1.is(elem)) {
-            sum += 1;
+        // if (typeof elem.cvalue === 'object') {sum += 1};
+        if (typeof elem.cvalue === 'undefined') {
+            sum += 2021;
+        }
+        ;
+        if (elem.cvalue.isBigObject) {
+            sum += +elem.cvalue;
         }
         ;
         //   return elem.сvalue;
@@ -30,7 +37,8 @@ function summ(a) {
 }
 var obj = {
     hello: { cvalue: 1 },
-    hi: { cvalue: 'Hello world' },
+    u: { undefined: undefined },
+    hi: { cvalue: '10' },
     world: { cvalue: { yay: { cvalue: '2' } } }
 };
 summ(obj);

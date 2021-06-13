@@ -1,17 +1,19 @@
 "use strict";
-import { is } from 'typescript-is';
+
 function summ(a) {
-    interface BigObject {
+    type BigObject = {
       [a: string]: { value: number | string | undefined | BigObject } | undefined;
     }
     let sum = 0;
     const x = Object.keys(a).map((k) => {
       
       const elem = a[k];
-      console.log(elem);
-      if (typeof elem.cvalue === "number") {sum += 1;};
-      if (typeof elem.cvalue === 'string') {sum += 1;}; // || '2021'
-      if (is<BigObject>(elem)) {sum += 1};
+      console.log(elem.cvalue);
+      if (typeof elem.cvalue === "number") {sum += elem.cvalue;};
+      if (typeof elem.cvalue === 'string') {if (isNaN(+elem.cvalue)){sum += 2021;} else (sum += +elem.cvalue)}; // || '2021'
+      // if (typeof elem.cvalue === 'object') {sum += 1};
+      if (typeof elem.cvalue === 'undefined') {sum += 2021};
+      if (elem.cvalue.isBigObject) {sum += +elem.cvalue};
       //   return elem.сvalue;
     });
     console.log(sum);
@@ -25,7 +27,8 @@ function summ(a) {
   }
   const obj = {
     hello: { cvalue: 1 },
-    hi: {cvalue: 'Hello world'},
+    u: {undefined},
+    hi: {cvalue: '10'},
     world: { cvalue: { yay: { cvalue: '2' } } },
   };
   summ(obj);
