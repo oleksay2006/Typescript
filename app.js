@@ -12,20 +12,19 @@ function summ(a) {
             if (isNaN(+elem.cvalue)) {
                 sum += 2021;
             }
-            else
-                (sum += +elem.cvalue);
+            else {
+                sum += +elem.cvalue;
+            }
         }
         ; // || '2021'
-        // if (typeof elem.cvalue === 'object') {sum += 1};
+        if (typeof elem.cvalue === 'object') {
+            sum += 1;
+        }
+        ;
         if (typeof elem.cvalue === 'undefined') {
             sum += 2021;
         }
         ;
-        if (elem.cvalue.isBigObject) {
-            sum += +elem.cvalue;
-        }
-        ;
-        //   return elem.сvalue;
     });
     console.log(sum);
     // console.log(x);

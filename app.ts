@@ -10,11 +10,10 @@ function summ(a) {
       const elem = a[k];
       console.log(elem.cvalue);
       if (typeof elem.cvalue === "number") {sum += elem.cvalue;};
-      if (typeof elem.cvalue === 'string') {if (isNaN(+elem.cvalue)){sum += 2021;} else (sum += +elem.cvalue)}; // || '2021'
-      // if (typeof elem.cvalue === 'object') {sum += 1};
-      if (typeof elem.cvalue === 'undefined') {sum += 2021};
-      if (elem.cvalue.isBigObject) {sum += +elem.cvalue};
-      //   return elem.сvalue;
+      if (typeof elem.cvalue === 'string') {if (isNaN(+elem.cvalue)){sum += 2021;} else {sum += +elem.cvalue}}; // || '2021'
+      if (typeof elem.cvalue === 'object') {sum += 1;};
+      if (typeof elem.cvalue === 'undefined') {sum += 2021;};
+      
     });
     console.log(sum);
     // console.log(x);
